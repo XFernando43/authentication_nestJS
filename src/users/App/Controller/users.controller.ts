@@ -1,34 +1,27 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UsersService } from '../Service/users.service';
 import { CreateUserDto } from '../../Domain/dto/create-user.dto';
-import { UpdateUserDto } from '../../Domain/dto/update-user.dto';
+import { ApiTags } from '@nestjs/swagger';
+import { SignInUserDto } from 'src/users/Domain/dto/SignIn-user.dto';
 
+@ApiTags("Users")
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  createUser(@Body() _user:CreateUserDto){
+    return this.usersService.createUser(_user);
   }
-
+  
   @Get()
-  findAll() {
+  getUser(){
     return this.usersService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  @Post("SIGNIN")
+  SignIn(@Body() _user: SignInUserDto){
+    return this.usersService.signIn(_user);
   }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
-  }
+  
 }

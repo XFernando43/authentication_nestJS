@@ -15,7 +15,7 @@ import { ProductsModule } from './products/Infrasctructure/products.module';
       password: '123456789',
       database: 'auth',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
       logging:true, 
     }),
     UsersModule,
