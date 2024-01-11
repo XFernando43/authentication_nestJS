@@ -6,6 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const options = new DocumentBuilder()
+  .addBearerAuth()
   .setTitle('Kombox-API')
   .setDescription('Kombox-api web seller')
   .setVersion('1.0')
